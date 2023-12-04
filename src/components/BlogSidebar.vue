@@ -47,23 +47,21 @@
       </div>
     </div>
 
-    <!-- 卡片 -->
+    <!-- 文章分类卡片 -->
     <div class="card mb-3">
-      <!-- 上半部分 -->
       <div class="row">
         <div class="col-md-12">
           <div class="card-body">
-            <h5 class="card-title">分类</h5>
+            <h5 class="card-title">文章分类</h5>
           </div>
         </div>
       </div>
       <hr class="mx-3 m-0" />
-      <!-- 下半部分 -->
       <div class="row">
         <div class="col-md-12">
           <div class="card-body">
             <div class="card-text mb-3" v-for="t in countArticleType">
-              <a class="text-decoration-none" href="JavaScript:void(0);" @click="goArticleType(t)">
+              <a class="text-decoration-none" href="javascript:void(0);" @click="goArticleType(t)">
                 {{ t.articleTypeName }}({{ t.articleTypeCount }})
               </a>
             </div>
@@ -74,16 +72,14 @@
 
     <!-- 归档 -->
     <div class="card mb-3">
-      <!-- 上半部分 -->
       <div class="row">
         <div class="col-md-12">
           <div class="card-body">
-            <h5 class="card-title">归档</h5>
+            <h5 class="card-title">文章归档</h5>
           </div>
         </div>
       </div>
       <hr class="mx-3 m-0" />
-      <!-- 下半部分 -->
       <div class="row">
         <div class="col-md-12">
           <div class="card-body">
@@ -98,8 +94,7 @@
     </div>
 
     <!-- 友情链接 -->
-    <div class="card mb-3">
-      <!-- 上半部分 -->
+    <!-- <div class="card mb-3">
       <div class="row">
         <div class="col-md-12">
           <div class="card-body">
@@ -108,7 +103,6 @@
         </div>
       </div>
       <hr class="mx-3 m-0" />
-      <!-- 下半部分 -->
       <div class="row">
         <div class="col-md-12">
           <div class="card-body">
@@ -121,7 +115,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

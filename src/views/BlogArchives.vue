@@ -73,6 +73,8 @@ export default {
           this.articleArchivist = data.data;
         }
       });
+      // 回到顶部
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     // 文章详情跳转
     goArtcleDetail(article) {
