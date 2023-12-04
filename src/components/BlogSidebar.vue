@@ -174,7 +174,7 @@ export default {
       this.$router.push(`/archives/${t.time}`);
     },
     goArticleType(t) {
-      this.$router.push(`articleType/${t.articleTypeId}/${t.articleTypeName}`);
+      this.$router.push(`/articleType/${t.articleTypeId}/${t.articleTypeName}`);
     },
   },
 };

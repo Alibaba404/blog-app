@@ -11,9 +11,9 @@ import VueAxios from "vue-axios";
 
 Vue.config.productionTip = false;
 // 线上配置
-// axios.defaults.baseURL = "http://files.aikuiba.cn:30002";
+axios.defaults.baseURL = "http://files.aikuiba.cn:30002";
 // 开发配置
-axios.defaults.baseURL = "http://127.0.0.1:8080";
+// axios.defaults.baseURL = "http://127.0.0.1:8080";
 axios.interceptors.request.use((config) => {
   config.headers["FROMAPP"] = "20231201";
   return config;
