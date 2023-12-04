@@ -23,7 +23,7 @@
                 {{ article.createTime }}
               </span>
               <span class="me-1">
-                <el-link :underline="false" @click.once="doStarClick">
+                <el-link :underline="false" @click="doStarClick">
                   <i class="el-icon-star-off fs-5" v-if="!article.isStarClick"></i>
                   <i class="el-icon-star-on fs-5" v-if="article.isStarClick"></i>
                 </el-link>
@@ -139,11 +139,10 @@ export default {
       content: "",
       // 文章评论列表
       articleComments: [],
-      // // 是否点赞
-      // isStarClick: false,
       totals: 10,
       page: 1,
       pageSize: 5,
+      timer: "",
     };
   },
   methods: {
@@ -232,6 +231,7 @@ export default {
           .then(({ data }) => {
             if (data.success) {
               //删除成功
+              this.page = 1;
               this.getArticleComments();
               this.$message.success("评论删除成功!");
             }
@@ -251,19 +251,33 @@ export default {
     // 点赞
     doStarClick() {
       if (this.articleId) {
-        this.article.isStarClick = true;
-        this.$http
-          .post(`/article/addArticleStarNum/${this.articleId}`)
-          .then(({ data }) => {
-            if (data.success) {
-              if (data.data) {
-                this.$message.success("感谢您喜欢这篇文章!");
-                // 不用再次请求
-                this.article.articleStarNum++;
-              }
-            }
-          })
-          .catch((res) => {});
+        this.article.isStarClick = !this.article.isStarClick;
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+          if (this.article.isStarClick) {
+            this.$http
+              .post(`/article/addArticleStarNum/${this.articleId}`)
+              .then(({ data }) => {
+                if (data.success) {
+                  if (data.data) {
+                    this.$message.success("感谢您喜欢这篇文章!");
+                    // 不用再次请求
+                    this.article.articleStarNum++;
+                  }
+                }
+              })
+              .catch((res) => {});
+          } else {
+            this.$http
+              .post(`/article/subArticleStarNum/${this.articleId}`)
+              .then(({ data }) => {
+                if (data.success) {
+                  this.article.articleStarNum--;
+                }
+              })
+              .catch((res) => {});
+          }
+        }, 1000);
       }
     },
     // 改变评论分页
